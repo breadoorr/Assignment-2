@@ -1,0 +1,135 @@
+/* file that styles the Cart.html */
+
+/* main body */
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 2vh;
+  padding: 2hv;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.head {
+  width: 100%;
+  display: flex;
+  background-color: #34516c;
+  color: white;
+  overflow: hidden;
+}
+
+.head h2 {
+  padding-left: 5%;
+}
+
+/* styling in case the cart is empty */
+.empty {
+  padding: 20%;
+}
+
+/* appearance of each product in the cart */
+
+.product {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  margin: 1vh;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  overflow: hidden;
+}
+
+.product img {
+  width: 15%;
+  min-width: 100px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin: 1%;
+}
+
+.product .id {
+  width: 20%;
+  height: 10%;
+  text-align: center;
+  position: relative;
+}
+
+.product .quantity {
+  align-self: flex-end;
+}
+
+.product h2 {
+  align-self: baseline;
+}
+
+.product .price {
+  align-self: baseline;
+  padding-left: 7%;
+}
+
+.product .total {
+  align-self: baseline;
+  padding-left: 7%;
+}
+
+.product .cross {
+  padding: 3%;
+  padding-left: 30%;
+}
+
+/* display of the total sum part */
+
+#sum {
+  width: 100%;
+  background-color: #34516c;
+  height: 20%;
+  color: white;
+  text-align: right;
+  padding-right: 10px;
+}
+
+/* style of the div that contains "checkout" and "empty the cart" buttons */
+#buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-end;
+  padding: 0;
+  margin: 0;
+}
+
+/* style of the buttons themselves */
+
+#check,
+#empty {
+  padding: 5px;
+  margin: 10px;
+  border: 2px solid #34516c;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+#check:hover,
+#empty:hover {
+  color: white;
+  background-color: #34516c;
+}
+
+/* responsiveness of the page */
+@media (max-width: 700px) {
+  .product h2 {
+    font-size: 1em;
+  }
+
+  .product .cross {
+    padding-left: 3%;
+  }
+}

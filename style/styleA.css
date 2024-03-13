@@ -1,0 +1,88 @@
+/* file that styles the About.html page */
+body {
+  background-color: #c9e4fe;
+  overflow-x: hidden;
+}
+
+#container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border: 1px solid #343434;
+}
+
+/* top image */
+.content {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}
+h1 {
+  text-align: center;
+}
+
+#image {
+  width: 100%;
+  filter: blur(5px);
+  margin: 0;
+  padding: 0;
+}
+
+#center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  width: 80%;
+  font-weight: bolder;
+  font-size: xx-large;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* main body */
+
+#body {
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+  text-align: left;
+  align-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+#body p {
+  padding: 0 5%;
+}
+
+#body h1,
+h2,
+h3,
+h4 {
+  text-align: center;
+}
+iframe,
+video {
+  width: 90%; /* Set a fixed width for both iframe and video */
+  margin-bottom: 5%;
+  border: 5px solid rgb(46, 86, 137);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}

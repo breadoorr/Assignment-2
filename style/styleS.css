@@ -1,0 +1,106 @@
+/* MAIN BODY of the Products.html */
+
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-content: space-between;
+  justify-content: center;
+}
+/* categories div */
+#categories {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-content: space-between;
+  justify-content: center;
+}
+
+.category {
+  width: 20%;
+  padding: 10px 12px;
+  background-color: #f1f5ff;
+  border: 1px solid rgb(211, 222, 248);
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+  margin: 5px;
+  position: relative;
+  text-align: center;
+  font-size: 0.5em;
+}
+
+.category a {
+  display: none;
+}
+
+.category.active,
+.category:hover {
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+  background-color: #334b6f;
+  color: white;
+}
+
+/* products style */
+.product {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 0;
+  width: 20%;
+  min-width: 150px;
+  padding: 10px 12px;
+  background-color: #d6edff;
+  border: 1px solid rgb(113, 137, 192);
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+  margin: 5px;
+  position: relative;
+}
+
+.product p {
+  display: block;
+}
+
+.product:hover {
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+}
+.product img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.product .cart {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: rgb(209, 227, 255);
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  border: solid 1px rgb(190, 226, 255);
+  /* position: absolute; */
+  text-align: center;
+  margin: 5px;
+}
+.product .cart:hover,
+.cart.active {
+  color: white;
+  background-color: black;
+}
+
+/* scroll button */
+.scroll {
+  width: 10%;
+  position: fixed;
+  bottom: 10%;
+  right: 8%;
+  background-color: rgba(209, 224, 255, 0.5);
+  font-size: 4vh;
+  font-size-adjust: 100%;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}

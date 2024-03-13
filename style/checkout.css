@@ -1,0 +1,65 @@
+/* file that styles the checkout.html page */
+
+/* main body */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+h2 {
+  text-align: center;
+}
+
+/* billing information */
+#bill {
+  width: 45%;
+  margin: 15px;
+  /* float: left; */
+  position: relative;
+}
+
+/* payment information */
+#payment {
+  width: 45%;
+  margin: 15px;
+}
+
+/* order summary */
+#order {
+  clear: both;
+  margin: 15px;
+}
+
+/* general style for the input part */
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+#order button {
+  background-color: #34516c;
+  color: white;
+  padding: 10px 15px;
+  border: 1px solid #34516c;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#order button:hover {
+  background-color: white;
+  color: #34516c;
+}

@@ -41,11 +41,11 @@
               ><i class="fa fa-times"></i
             ></a>
           </li>
-          <li><a href="index.html">Home</a></li>
-          <li class="active"><a href="Products.html">Products</a></li>
-          <li><a href="About.html">About</a></li>
+          <li><a href="index.php">Home</a></li>
+          <li class="active"><a href="Products.php">Products</a></li>
+          <li><a href="About.php">About</a></li>
           <li>
-            <a href="Cart.html"
+            <a href="Cart.php"
               ><i class="fa fa-shopping-cart" aria-hidden="true"></i
             ></a>
           </li>
@@ -56,7 +56,50 @@
     <!-- Products Section -->
 
     <div id="container">
+<!--        --><?php
+//        $search ="";
+//
+//        if(isset($_GET["searchCriterion"])){
+//            echo "You searched ". $_GET["searchCriterion"];
+//
+//            $search = $_GET["searchCriterion"];
+//        }
+//        ?>
       <div id="categories"></div>
+        <?php
+        $connection = mysqli_connect('localhost', 'root','usbw', 'dchystiakova');
+        if (!$connection) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        // Query the tbl_products table
+        $result = mysqli_query($connection, "SELECT * FROM tbl_products");
+
+        // Check if the query was successful
+        if (!$result) {
+            die("Query failed: " . mysqli_error($connection));
+        }
+
+        // Fetch and display the data
+        while ($row = mysqli_fetch_assoc($result)) {
+//            echo "Product ID: " . $row['product_id'] . "<br>";
+//            echo "Product Name: " . $row['product_title'] . "<br>";
+//            // Output other fields as needed
+//            echo "<br>";
+
+            echo '
+            <div class="product">
+                <img src="./resources/products/coursework/assignment-1-resources/' . $row['product_image'] . '" alt="' . $row['product_title'] . '"/>
+                <h2>' . $row['product_title'] . '</h2>
+                <p>Price: ' . $row['product_price'] . '</p>
+                <a href="#" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            </div>
+        ';
+        }
+
+        // Close the connection
+        mysqli_close($connection);
+        ?>
     </div>
 
     <!-- CONTACT SECTION -->
@@ -94,5 +137,9 @@
       </div>
       <p class="copy">Copyright © 2023 UCLan Cyprus, All rights reserved.</p>
     </section>
+
+    <?php
+
+    ?>
   </body>
 </html>

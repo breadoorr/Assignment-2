@@ -34,11 +34,11 @@
               ><i class="fa fa-times"></i
             ></a>
           </li>
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="Products.html">Products</a></li>
-          <li><a href="About.html">About</a></li>
+          <li class="active"><a href="index.php">Home</a></li>
+          <li><a href="Products.php">Products</a></li>
+          <li><a href="About.php">About</a></li>
           <li>
-            <a href="Cart.html"
+            <a href="Cart.php"
               ><i class="fa fa-shopping-cart" aria-hidden="true"></i
             ></a>
           </li>
@@ -109,7 +109,7 @@
         <!-- END OF SLIDER -->
       </div>
 
-      <!-- Best sellers section -->
+<!--       Best sellers section-->
       <section class="best">
         <h2 id="sell">Best sellers</h2>
         <div id="products"></div>

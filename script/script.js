@@ -1,7 +1,7 @@
 // Secondary script file
 
 // if the loaded page is the main one
-if (window.location.href.indexOf("index.html") > -1) {
+if (window.location.href.indexOf("index.php") > -1) {
   // Wait for the DOM content to be fully loaded
   document.addEventListener("DOMContentLoaded", function () {
     // Slider navigation buttons functioning
@@ -27,7 +27,7 @@ if (window.location.href.indexOf("index.html") > -1) {
     let see = document.getElementsByClassName("see");
     for (let i = 0; i < see.length; i++) {
       see[i].addEventListener("click", function () {
-        window.location.href = "Products.html";
+        window.location.href = "Products.php";
       });
     }
   });

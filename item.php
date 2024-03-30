@@ -52,7 +52,19 @@
 
     <!-- Main body -->
 
-    <div id="container"></div>
+    <div id="container">
+        <?php
+        $connection = mysqli_connect('localhost', 'root','usbw', 'dchystiakova');
+        if (!$connection) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        $id = $_GET['product_id'];
+        // Query the tbl_products table
+        $result = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $id");
+        $row = mysqli_fetch_assoc($result);
+        echo $row['product_title'];
+        ?>
+    </div>
 
     <!-- CONTACT SECTION -->
 

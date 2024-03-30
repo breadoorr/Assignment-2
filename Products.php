@@ -92,13 +92,30 @@
                 <img src="./resources/products/coursework/assignment-1-resources/' . $row['product_image'] . '" alt="' . $row['product_title'] . '"/>
                 <h2>' . $row['product_title'] . '</h2>
                 <p>Price: ' . $row['product_price'] . '</p>
-                <a href="#" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                <a href="item.php?product_id='  .$row['product_id'].  '" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
             </div>
         ';
         }
 
         // Close the connection
         mysqli_close($connection);
+
+
+        // Check if the request is not coming from a link click
+//        if (isset($_GET['product_id'])) {
+//            // Perform some action because a link was not clicked
+//            // For example:
+//            session_start(); // Start the session
+//
+//            // Store data in session variables
+//            $_SESSION['product'] = $_GET['product_id'];
+//
+//            // Redirect to another page
+//            header('Location: item.php');
+//            exit();
+//        }
+
+
         ?>
     </div>
 

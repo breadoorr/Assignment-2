@@ -19,7 +19,7 @@
       crossorigin="anonymous"
     ></script>
     <!-- link for the main script file -->
-    <script src="script/data.js"></script>
+<!--    <script src="script/data.js"></script>-->
     <!-- link for the secondary script file -->
     <script src="script/script.js"></script>
     <title>Uclan Store</title>
@@ -55,17 +55,35 @@
 
     <!-- Products Section -->
 
+    <div id="search">
+        <form method="get">
+            <label>
+                <input type = "text" name = "searchCriterion">
+            </label>
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button type = "reset" value = "Clear form"><i class="fa fa-times"></i></button>
+        </form>
+    </div>
+
+    <div id="categories">
+        <?php
+        if(isset($_GET["searchCriterion"])) {
+            //            echo "You searched " . $_GET["searchCriterion"];
+
+            $searchCriterion = trim($_GET["searchCriterion"]);
+            if ($searchCriterion != "") {
+                $search = preg_split('/\s+/', $searchCriterion);
+                foreach ($search as $word) {
+                    echo '<p class="category">' . $word . '</p>';
+                }
+            }
+        }
+        ?>
+    </div>
+
     <div id="container">
-<!--        --><?php
-//        $search ="";
-//
-//        if(isset($_GET["searchCriterion"])){
-//            echo "You searched ". $_GET["searchCriterion"];
-//
-//            $search = $_GET["searchCriterion"];
-//        }
-//        ?>
-      <div id="categories"></div>
+
+
         <?php
         $connection = mysqli_connect('localhost', 'root','usbw', 'dchystiakova');
         if (!$connection) {
@@ -73,49 +91,75 @@
         }
 
         // Query the tbl_products table
-        $result = mysqli_query($connection, "SELECT * FROM tbl_products");
 
-        // Check if the query was successful
-        if (!$result) {
-            die("Query failed: " . mysqli_error($connection));
-        }
 
-        // Fetch and display the data
-        while ($row = mysqli_fetch_assoc($result)) {
-//            echo "Product ID: " . $row['product_id'] . "<br>";
-//            echo "Product Name: " . $row['product_title'] . "<br>";
-//            // Output other fields as needed
-//            echo "<br>";
+        $search ="";
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+        if(isset($_GET["searchCriterion"])) {
+//            echo "You searched " . $_GET["searchCriterion"];
 
-            echo '
+            $searchCriterion = $_GET["searchCriterion"];
+            $search = preg_split('/\s+/', $searchCriterion);
+            foreach ($search as $word) {
+                $myQuery = "SELECT * FROM tbl_products WHERE product_title LIKE '%" . $word . "%'";
+
+                //echo $myQuery;
+                //echo '<br>';echo '<br>';
+
+
+                $result = mysqli_query($connection, $myQuery);
+
+
+                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                    echo '
             <div class="product">
+                <a href="#" onclick="redirectToDetails(' . $row['product_id'] . ')">
                 <img src="./resources/products/coursework/assignment-1-resources/' . $row['product_image'] . '" alt="' . $row['product_title'] . '"/>
                 <h2>' . $row['product_title'] . '</h2>
                 <p>Price: ' . $row['product_price'] . '</p>
-                <a href="item.php?product_id='  .$row['product_id'].  '" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                </a>
+                <a href="#" onclick="trackClick(' . $row['product_id'] . ')" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
             </div>
         ';
+                }
+            }
+            }  else {
+            $search = "";
+        }
+
+
+        }
+        else {
+            $search = "";
+//            $result = mysqli_query($connection, "SELECT * FROM tbl_products");
+//
+//            // Check if the query was successful
+//            if (!$result) {
+//                die("Query failed: " . mysqli_error($connection));
+//            }
+//
+//            // Fetch and display the data
+//            while ($row = mysqli_fetch_assoc($result)) {
+////            echo "Product ID: " . $row['product_id'] . "<br>";
+////            echo "Product Name: " . $row['product_title'] . "<br>";
+////            // Output other fields as needed
+////            echo "<br>";
+//
+//                echo '
+//            <div class="product">
+//                <a href="#" onclick="redirectToDetails(' . $row['product_id'] . ')">
+//                <img src="./resources/products/coursework/assignment-1-resources/' . $row['product_image'] . '" alt="' . $row['product_title'] . '"/>
+//                <h2>' . $row['product_title'] . '</h2>
+//                <p>Price: ' . $row['product_price'] . '</p>
+//                </a>
+//                <a href="#" onclick="trackClick(' . $row['product_id'] . ')" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+//            </div>
+//        ';
+//            }
         }
 
         // Close the connection
         mysqli_close($connection);
-
-
-        // Check if the request is not coming from a link click
-//        if (isset($_GET['product_id'])) {
-//            // Perform some action because a link was not clicked
-//            // For example:
-//            session_start(); // Start the session
-//
-//            // Store data in session variables
-//            $_SESSION['product'] = $_GET['product_id'];
-//
-//            // Redirect to another page
-//            header('Location: item.php');
-//            exit();
-//        }
-
-
         ?>
     </div>
 

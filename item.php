@@ -62,7 +62,16 @@
         // Query the tbl_products table
         $result = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $id");
         $row = mysqli_fetch_assoc($result);
-        echo $row['product_title'];
+        echo '<div id="product">
+                <img src="./resources/products/coursework/assignment-1-resources/' . $row['product_image'] . '" alt="' . $row['product_title'] . '"/>
+                <div>
+                <h2>' . $row['product_title'] . '</h2>
+                <p id="price">Price: ' . $row['product_price'] . '</p>
+                <p id = "quantity"><b>Quantity</b>:<input type="number" min = "0" max = "10" step = "1" size = "3" value = "1"></p>
+                <p id = "add"><button>Add to cart</button></p>
+                </div>
+                <p id = "des"><b>Description</b>: ' . $row['product_desc'] . '</p>
+            </div>';
         ?>
     </div>
 

@@ -42,6 +42,7 @@
               ><i class="fa fa-shopping-cart" aria-hidden="true"></i
             ></a>
           </li>
+          <li><i class="fa-solid fa-circle-user fa-2xl" aria-hidden="true"></i></li>
         </ul>
       </div>
     </div>
@@ -111,8 +112,31 @@
 
 <!--       Best sellers section-->
       <section class="best">
-        <h2 id="sell">Best sellers</h2>
-        <div id="products"></div>
+        <h2 id="sell">Special offers</h2>
+        <div id="products">
+            <?php
+                $connection = mysqli_connect('localhost', 'root','usbw', 'dchystiakova');
+            if (!$connection) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+
+            // Query the tbl_products table
+            $result = mysqli_query($connection, "SELECT * FROM tbl_offers");
+
+            // Check if the query was successful
+            if (!$result) {
+                die("Query failed: " . mysqli_error($connection));
+            }
+
+            // Fetch and display the data
+            while ($row = mysqli_fetch_assoc($result)){
+                echo '<div class="pro">
+                <h2>' . $row['offer_title'] . '</h2>
+                <p>' . $row['offer_dec'] . '</p>
+                </div>';
+            }
+            ?>
+        </div>
       </section>
 
       <!-- Contact section -->

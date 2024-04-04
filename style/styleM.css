@@ -47,6 +47,7 @@ body {
   display: inline;
   position: relative;
   padding: 2% 5%;
+  color: white;
 }
 
 #navbar li a {
@@ -57,7 +58,8 @@ body {
 }
 
 #navbar li a:hover,
-#navbar li.active a {
+#navbar li.active a,
+#navbar li:hover{
   color: rgb(34, 26, 26);
 }
 
@@ -263,11 +265,6 @@ body {
   margin: 5px;
 }
 
-#products .pro img {
-  width: 100%;
-  border-radius: 20px;
-}
-
 .pro:hover {
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 }
@@ -305,6 +302,7 @@ body {
   color: #fff;
   padding: 5%;
   box-sizing: border-box;
+  margin-top: 3vh;
 }
 
 .contact-container {
@@ -356,7 +354,7 @@ body {
 }
 
 /* responsiveness of the common parts of the website (navigation bar (burger menu) and contact section) */
-@media (max-width: 700px) {
+@media (max-width: 825px) {
   #navbar {
     display: flex;
     flex-direction: column;

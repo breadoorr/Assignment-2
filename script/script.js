@@ -23,7 +23,7 @@ if (window.location.href.indexOf("index.php") > -1) {
       };
     }
 
-    // if see more element in the best sellers section is pressed
+    //see more element in the bestsellers section is pressed
     let see = document.getElementsByClassName("see");
     for (let i = 0; i < see.length; i++) {
       see[i].addEventListener("click", function () {
@@ -54,4 +54,45 @@ function cl() {
       nav.classList.remove("act");
     });
   }
+}
+
+function trackClick(id){
+  const existingCartJSON = localStorage.getItem("cart");
+  // parsing from string if the cart is already exists, creating the new one if not
+  let cart = existingCartJSON ? JSON.parse(existingCartJSON) : {};
+
+  // const selectedProduct = id;
+  // adding chosen product to the cart or updating its quantity if its already present in the cart
+  if (cart[id]) {
+    cart[id]++;
+  } else {
+    cart[id] = 1;
+  }
+
+  // Convert the updated cart to JSON format and store it in local storage
+  const updatedCartJSON = JSON.stringify(cart);
+  localStorage.setItem("cart", updatedCartJSON);
+  document.cookie = 'cart=' + updatedCartJSON + '; path=/';
+  alert("Product added to the cart!");
+}
+
+function redirectToDetails(productId) {
+  event.preventDefault();
+  // Simulate click on the link to navigate to details page
+  window.location.href = "item.php?product_id=" + productId;
+
+  return false;
+}
+
+function remove(id) {
+    const existingCartJSON = localStorage.getItem("cart");
+    // parsing from string if the cart is already exists, creating the new one if not
+    let cart = existingCartJSON ? JSON.parse(existingCartJSON) : {};
+    //remove the item from cart
+    delete cart[id];
+    const updatedCartJSON = JSON.stringify(cart);
+    localStorage.setItem("cart", updatedCartJSON);
+    document.cookie = 'cart=' + JSON.stringify(updatedCartJSON) + '; path=/';
+    location.reload();
+    // Update data model storage accordingly
 }

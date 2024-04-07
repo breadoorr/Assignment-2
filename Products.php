@@ -94,7 +94,6 @@
 
 
         $search ="";
-        if ($_SERVER["REQUEST_METHOD"] == "GET") {
         if(isset($_GET["searchCriterion"])) {
 //            echo "You searched " . $_GET["searchCriterion"];
 
@@ -123,39 +122,34 @@
         ';
                 }
             }
-            }  else {
-            $search = "";
-        }
-
-
         }
         else {
             $search = "";
-//            $result = mysqli_query($connection, "SELECT * FROM tbl_products");
-//
-//            // Check if the query was successful
-//            if (!$result) {
-//                die("Query failed: " . mysqli_error($connection));
-//            }
-//
-//            // Fetch and display the data
-//            while ($row = mysqli_fetch_assoc($result)) {
-////            echo "Product ID: " . $row['product_id'] . "<br>";
-////            echo "Product Name: " . $row['product_title'] . "<br>";
-////            // Output other fields as needed
-////            echo "<br>";
-//
-//                echo '
-//            <div class="product">
-//                <a href="#" onclick="redirectToDetails(' . $row['product_id'] . ')">
-//                <img src="./resources/products/coursework/assignment-1-resources/' . $row['product_image'] . '" alt="' . $row['product_title'] . '"/>
-//                <h2>' . $row['product_title'] . '</h2>
-//                <p>Price: ' . $row['product_price'] . '</p>
-//                </a>
-//                <a href="#" onclick="trackClick(' . $row['product_id'] . ')" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-//            </div>
-//        ';
-//            }
+            $result = mysqli_query($connection, "SELECT * FROM tbl_products");
+
+            // Check if the query was successful
+            if (!$result) {
+                die("Query failed: " . mysqli_error($connection));
+            }
+
+            // Fetch and display the data
+            while ($row = mysqli_fetch_assoc($result)) {
+//            echo "Product ID: " . $row['product_id'] . "<br>";
+//            echo "Product Name: " . $row['product_title'] . "<br>";
+//            // Output other fields as needed
+//            echo "<br>";
+
+                echo '
+            <div class="product">
+                <a href="#" onclick="redirectToDetails(' . $row['product_id'] . ')">
+                <img src="./resources/products/coursework/assignment-1-resources/' . $row['product_image'] . '" alt="' . $row['product_title'] . '"/>
+                <h2>' . $row['product_title'] . '</h2>
+                <p>Price: ' . $row['product_price'] . '</p>
+                </a>
+                <a href="#" onclick="trackClick(' . $row['product_id'] . ')" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            </div>
+        ';
+            }
         }
 
         // Close the connection

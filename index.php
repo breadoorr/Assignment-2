@@ -42,10 +42,11 @@
               ><i class="fa fa-shopping-cart" aria-hidden="true"></i
             ></a>
           </li>
-          <li><i class="fa-solid fa-circle-user fa-2xl" aria-hidden="true"></i></li>
+          <li onclick="openOverlay()"><i class="fa-solid fa-circle-user fa-2xl" aria-hidden="true"></i></li>
         </ul>
       </div>
     </div>
+    <?php include 'login.php'; ?>
     <!-- Main body section -->
     <div id="container">
       <div id="home">

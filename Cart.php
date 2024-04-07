@@ -63,7 +63,7 @@
                 }
 
                 $sum = 0;
-                foreach ($cartData as $product => $quantity) {
+                foreach (json_decode($cartData) as $product => $quantity) {
 
                     // Query the tbl_products table
                     $result = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $product");

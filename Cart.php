@@ -55,25 +55,27 @@
         // Retrieve cart data from cookie
         if (isset($_COOKIE['cart'])) {
             $cartData = json_decode($_COOKIE['cart'], true);
-            if($cartData == "{}") echo "<div class='empty'>The cart is empty for now</div>";
-            else {
-                $connection = mysqli_connect('localhost', 'root','usbw', 'dchystiakova');
-                if (!$connection) {
-                    die("Connection failed: " . mysqli_connect_error());
-                }
+//            $cartData = json_decode($cartData, true);
+            if ($cartData !== null && is_array($cartData)) {
+                if (empty($cartData)) {
+                    echo "<div class='empty'>The cart is empty for now</div>";
+                } else {
+                    // Proceed with your database connection and processing
+                    global $connection;
+                    include 'db_connection.php';
 
-                $sum = 0;
-                foreach (json_decode($cartData) as $product => $quantity) {
+                    $sum = 0;
+                    foreach ($cartData as $product => $quantity) {
 
-                    // Query the tbl_products table
-                    $result = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $product");
-                    $row = mysqli_fetch_assoc($result);
+                        // Query the tbl_products table
+                        $result = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $product");
+                        $row = mysqli_fetch_assoc($result);
 
-                    $price = floatval(preg_replace("/[^\d.]/", "", $row['product_price']));
-                    $totalPrice = $price * $quantity;
-                    $sum += $totalPrice;
+                        $price = floatval(preg_replace("/[^\d.]/", "", $row['product_price']));
+                        $totalPrice = $price * $quantity;
+                        $sum += $totalPrice;
 
-                    echo '<div class="product">
+                        echo '<div class="product">
                           <a href="#" onclick="redirectToDetails(' . $row['product_id'] . ')">
                           <p class="id">' . $product . '</p>
                           <img src="./resources/products/coursework/assignment-1-resources/' . $row['product_image'] . '" />
@@ -83,11 +85,15 @@
                           </a>
                           <a href="#" onclick="remove(' . $product . ')" class="cross"><i class="fa fa-times"></i></a>
                           </div>';
+                    }
                 }
-            }
 
-            // Now $cartData contains the cart data from localStorage
-            // You can use it as needed
+                // Now $cartData contains the cart data from localStorage
+                // You can use it as needed
+            }
+            else {
+                echo "<div class='empty'>The cart is empty for now</div>";
+            }
         }
         else {
             echo "<div class='empty'>The cart is empty for now</div>";

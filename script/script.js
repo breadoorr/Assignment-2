@@ -92,13 +92,13 @@ function remove(id) {
     delete cart[id];
     const updatedCartJSON = JSON.stringify(cart);
     localStorage.setItem("cart", updatedCartJSON);
-    document.cookie = 'cart=' + JSON.stringify(updatedCartJSON) + '; path=/';
+    document.cookie = 'cart=' + updatedCartJSON + '; path=/';
     location.reload();
     // Update data model storage accordingly
 }
 
 function item_cart(id) {
-    var existingCartJSON = localStorage.getItem("cart");
+    const existingCartJSON = localStorage.getItem("cart");
     let cart = existingCartJSON ? JSON.parse(existingCartJSON) : {};
     const quantityEl = document
         .getElementById("quantity")
@@ -107,11 +107,11 @@ function item_cart(id) {
     if (cart[id]) {
       cart[id] += quantity;
     } else {
-      cart[id] =  quantity;
+      cart[id] = quantity;
     }
     const updatedCartJSON = JSON.stringify(cart);
     localStorage.setItem("cart", updatedCartJSON);
-    document.cookie = 'cart=' + JSON.stringify(updatedCartJSON) + '; path=/';
+    document.cookie = 'cart=' + updatedCartJSON + '; path=/';
     // notify the user that the product has been added to the cart
     alert(`Product added to the cart!`);
 }

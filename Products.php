@@ -85,10 +85,8 @@
 
 
         <?php
-        $connection = mysqli_connect('localhost', 'root','usbw', 'dchystiakova');
-        if (!$connection) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+        global $connection;
+        include 'db_connection.php';
 
         // Query the tbl_products table
 

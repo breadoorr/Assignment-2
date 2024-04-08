@@ -46,7 +46,9 @@
         </ul>
       </div>
     </div>
-    <?php include 'login.php'; ?>
+    <?php
+    session_start();
+    include 'login.php'; ?>
     <!-- Main body section -->
     <div id="container">
       <div id="home">
@@ -116,10 +118,8 @@
         <h2 id="sell">Special offers</h2>
         <div id="products">
             <?php
-                $connection = mysqli_connect('localhost', 'root','usbw', 'dchystiakova');
-            if (!$connection) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
+            global $connection;
+            include 'db_connection.php';
 
             // Query the tbl_products table
             $result = mysqli_query($connection, "SELECT * FROM tbl_offers");

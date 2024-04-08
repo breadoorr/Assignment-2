@@ -54,10 +54,8 @@
 
     <div id="container">
         <?php
-        $connection = mysqli_connect('localhost', 'root','usbw', 'dchystiakova');
-        if (!$connection) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+        global $connection;
+        include 'db_connection.php';
         $id = $_GET['product_id'];
         // Query the tbl_products table
         $result = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $id");

@@ -54,7 +54,7 @@
         <?php
         session_start();
         // Retrieve cart data from cookie
-        $sum = 0.0;
+        $sum = 0;
 
         if (isset($_COOKIE['cart'])) {
             $cartData = json_decode($_COOKIE['cart'], true);
@@ -74,7 +74,7 @@
                         $row = mysqli_fetch_assoc($result);
 
                         $price = floatval(preg_replace("/[^\d.]/", "", $row['product_price']));
-                        $totalPrice = $price * $quantity;
+                        $totalPrice = $price * intval($quantity);
                         $sum += $totalPrice;
 
                         echo '<div class="product">
@@ -140,10 +140,10 @@
             global $connection;
             include 'db_connection.php';
             $user_id = $_SESSION['user_id'];
-            $sql = "SELECT user_full_name FROM tbl_users WHERE user_id LIKE '$user_id'";
+            $sql = "SELECT * FROM tbl_users WHERE user_id LIKE '$user_id'";
             $result = mysqli_query($connection, $sql);
-            $user_name = mysqli_fetch_assoc($result);
-            echo "<h3>Your order history, ' . $user_name . '!</h3>";
+            $row = mysqli_fetch_assoc($result);
+            echo '<h3>Your order history, ' . $row['user_full_name'] . '!</h3>';
 
             $sql = "SELECT * FROM tbl_orders WHERE user_id LIKE '$user_id'";
             $result = mysqli_query($connection, $sql);
@@ -155,10 +155,10 @@
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div><p>Order id: ' . $row['order_id'] . ', Order data: ';
                 $products = json_decode($row['product_ids']);
-                foreach ($products as $pro => $quantity) {
+                foreach ($products as $pro => $quan) {
                     $result1 = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $pro");
                     $row1 = mysqli_fetch_assoc($result1);
-                    echo '' . $row1['product_title'] . ', ' . $quantity . ' ';
+                    echo '' . $row1['product_title'] . ', ' . $quan . ' ';
                 }
                 echo '</p></div>';
             }

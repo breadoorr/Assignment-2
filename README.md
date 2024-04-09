@@ -2,7 +2,7 @@
 
 ## Chystiakova Daria
 
-### URL: vesta.uclan.ac.uk/~dchystiakova/Assignment-2/Assignment-2/index.php
+### URL: vesta.uclan.ac.uk/~dchystiakova/Assignment-2/index.php
 
 ### Preferred browser for testing: Firefox
 
@@ -10,7 +10,7 @@
 
 - `Extended features to the shopping cart`
 
-- `The adoption of version control with regular quality commits to demonstrating progress throughout the assessment `[Github]()
+- `The adoption of version control with regular quality commits to demonstrating progress throughout the assessment `[Github](https://github.com/breadoorr/Assignment-2)
 
 - `HTML5 API integration`
 

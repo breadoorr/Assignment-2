@@ -7,12 +7,14 @@
     <!-- Makes the webpage responsive -->
     <link rel="stylesheet" type="text/css" href="style/styleM.css" />
     <link rel="stylesheet" href="style/styleI.css" />
-    <!-- Usage of a "FontAwesome" for some icons present on page
-    >Cart icon
-    >Menu bar icon
-    >Cross icon
-    >Arrows icons
-    -->
+      <link rel="stylesheet" href="style/review.css">
+
+      <!-- Usage of a "FontAwesome" for some icons present on page
+      >Cart icon
+      >Menu bar icon
+      >Cross icon
+      >Arrows icons
+      -->
     <script
       src="https://kit.fontawesome.com/3ba50cbadb.js"
       crossorigin="anonymous"
@@ -54,11 +56,13 @@
 
     <div id="container">
         <?php
+        session_start();
         global $connection;
         include 'db_connection.php';
-        $id = $_GET['product_id'];
+        $id = json_decode($_COOKIE['product']);
+        $_SESSION['product_id'] = $id;
         // Query the tbl_products table
-        $result = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $id");
+        $result = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE '$id'");
         $row = mysqli_fetch_assoc($result);
         echo '<div id="product">
                 <img src="./resources/products/coursework/assignment-1-resources/' . $row['product_image'] . '" alt="' . $row['product_title'] . '"/>
@@ -72,6 +76,13 @@
             </div>';
         ?>
     </div>
+
+    <?php
+     if(isset($_SESSION['user_id'])) {
+            include 'review.php';
+        }
+     include 'reviews.php';
+     ?>
 
     <!-- CONTACT SECTION -->
 

@@ -74,7 +74,7 @@ json_response("Error: " . mysqli_error($connection), 500);
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 // Retrieve form data
     if (isset($_SESSION['user_id'])) {
-        header("Location: user.php");
+//        header("Location: user.php");
     } else {
         $email = mysqli_real_escape_string($connection, $_POST['email']);
         $password = mysqli_real_escape_string($connection, $_POST['password']);

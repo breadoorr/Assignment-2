@@ -79,6 +79,7 @@ function trackClick(id){
 function redirectToDetails(productId) {
   event.preventDefault();
   // Simulate click on the link to navigate to details page
+    document.cookie = 'product=' + productId + '; path=/';
   window.location.href = "item.php?product_id=" + productId;
 
   return false;

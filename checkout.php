@@ -52,29 +52,29 @@
     <h2>Checkout</h2>
 
     <main>
-      <div id="bill">
-        <form>
-          <!-- Billing Information -->
-          <h3>Billing Information</h3>
-          <label for="fullName">Full Name:</label>
-          <input type="text" id="fullName" name="fullName" required />
-
-          <label for="email">Email:</label>
-          <input type="email" name="email" required />
-
-          <label for="address">Address:</label>
-          <input type="text" id="address" name="address" required />
-
-          <label for="city">City:</label>
-          <input type="text" id="city" name="city" required />
-
-          <label for="zipCode">ZIP Code:</label>
-          <input type="text" id="zipCode" name="zipCode" required />
-        </form>
-      </div>
+<!--      <div id="bill">-->
+<!--        <form>-->
+<!--           Billing Information -->
+<!--          <h3>Billing Information</h3>-->
+<!--          <label for="fullName">Full Name:</label>-->
+<!--          <input type="text" id="fullName" name="fullName" required />-->
+<!---->
+<!--          <label for="email">Email:</label>-->
+<!--          <input type="email" name="email" required />-->
+<!---->
+<!--          <label for="address">Address:</label>-->
+<!--          <input type="text" id="address" name="address" required />-->
+<!---->
+<!--          <label for="city">City:</label>-->
+<!--          <input type="text" id="city" name="city" required />-->
+<!---->
+<!--          <label for="zipCode">ZIP Code:</label>-->
+<!--          <input type="text" id="zipCode" name="zipCode" required />-->
+<!--        </form>-->
+<!--      </div>-->
 
       <div id="payment">
-        <form>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
           <!-- Payment Information -->
           <h3>Payment Information</h3>
           <label for="paymentMethod">Payment Method:</label>
@@ -97,12 +97,46 @@
 
           <label for="cvv">CVV:</label>
           <input type="text" id="cvv" name="cvv" required />
+            <button type="submit" id="submit">Place Order</button>
         </form>
       </div>
       <div id="order">
         <!-- Order Summary -->
         <h3>Order Summary</h3>
-        <button type="submit" id="submit">Place Order</button>
+          <?php
+          session_start();
+          $cartData = json_decode($_COOKIE['cart'], true);
+          global $connection;
+          include 'db_connection.php';
+
+          foreach ($cartData as $product => $quantity) {
+
+              // Query the tbl_products table
+              $result = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $product");
+              $row = mysqli_fetch_assoc($result);
+
+              $price = floatval(preg_replace("/[^\d.]/", "", $row['product_price']));
+              echo '<p>' . $row['product_title'] . ', ' . $quantity . ', £' . $price . '</p>';
+          }
+
+          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+              $user_id = $_SESSION['user_id'];
+              $cart = json_encode($cartData);
+              $sql = "INSERT INTO tbl_orders (user_id, product_ids) VALUES ('$user_id', '$cart')";
+              $result = mysqli_query($connection, $sql);
+
+              // Check if the query was successful
+              if (!$result) {
+                  die("Query failed: " . mysqli_error($connection));
+              }
+              else {
+                  echo '<script>alert("Your order is being processed")';
+                  header("Location: Products.php");
+              }
+          }
+          ?>
+
+
       </div>
     </main>
     <!-- Contact section -->

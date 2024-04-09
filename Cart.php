@@ -52,7 +52,10 @@
 
     <div id="container">
         <?php
+        session_start();
         // Retrieve cart data from cookie
+        $sum = 0.0;
+
         if (isset($_COOKIE['cart'])) {
             $cartData = json_decode($_COOKIE['cart'], true);
 //            $cartData = json_decode($cartData, true);
@@ -64,7 +67,6 @@
                     global $connection;
                     include 'db_connection.php';
 
-                    $sum = 0;
                     foreach ($cartData as $product => $quantity) {
 
                         // Query the tbl_products table
@@ -98,10 +100,72 @@
         else {
             echo "<div class='empty'>The cart is empty for now</div>";
         }
+
+        echo '<div id="sum">Total sum: £' . $sum . '</div>';
+
         ?>
 
     </div>
-    <div id="buttons"></div>
+    <?php
+    ?>
+    <div id="buttons">
+        <?php
+
+        echo '<button id="empty">Empty the cart</button>';
+        if(isset($_SESSION['user_id']) && $sum > 0) {
+            echo '<button id="check"><a href="checkout.php"> Proceed to checkout </a></button>';
+        }
+
+        ?>
+
+        <script> document.getElementById("empty").addEventListener("click", function () {
+                    // asking user the second time
+                    const userPermission = window.confirm("Do you want to empty the cart?");
+                    if (userPermission) {
+                      // removing the cart item from the local storage
+                      localStorage.removeItem("cart");
+                      var cart = {};
+                      document.cookie = 'cart=' + cart + '; path=/';
+                      // reloading the page
+                      location.reload();
+                      alert("Cart was emptied!");
+                    }
+                  });
+        </script>
+    </div>
+
+    <div>
+        <?php
+        if(isset($_SESSION['user_id'])) {
+            global $connection;
+            include 'db_connection.php';
+            $user_id = $_SESSION['user_id'];
+            $sql = "SELECT user_full_name FROM tbl_users WHERE user_id LIKE '$user_id'";
+            $result = mysqli_query($connection, $sql);
+            $user_name = mysqli_fetch_assoc($result);
+            echo "<h3>Your order history, ' . $user_name . '!</h3>";
+
+            $sql = "SELECT * FROM tbl_orders WHERE user_id LIKE '$user_id'";
+            $result = mysqli_query($connection, $sql);
+            if (!$result) {
+                die("Query failed: " . mysqli_error($connection));
+            }
+
+            // Fetch and display the data
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<div><p>Order id: ' . $row['order_id'] . ', Order data: ';
+                $products = json_decode($row['product_ids']);
+                foreach ($products as $pro => $quantity) {
+                    $result1 = mysqli_query($connection, "SELECT * FROM tbl_products WHERE product_id LIKE $pro");
+                    $row1 = mysqli_fetch_assoc($result1);
+                    echo '' . $row1['product_title'] . ', ' . $quantity . ' ';
+                }
+                echo '</p></div>';
+            }
+
+        }
+        ?>
+    </div>
 
     <!-- Contact section -->
 

@@ -1,37 +1,34 @@
-# Assignment-1
+# Assignment-2
 
 ## Chystiakova Daria
 
-### URL: vesta.uclan.ac.uk/~dchystiakova/assignment-1/index.html
+### URL: vesta.uclan.ac.uk/~dchystiakova/Assignment-2/Assignment-2/index.php
 
 ### Preferred browser for testing: Firefox
 
 ### I have completed up to Marking Criterion:
 
-- `Extended features to the shopping cart` 1 class in file "Cart.html"
+- `Extended features to the shopping cart`
 
-- `The adoption of version control with regular quality commits to demonstrating progress throughout the assessment` 1 class in file [Github.jpg](Github.jpg)
+- `The adoption of version control with regular quality commits to demonstrating progress throughout the assessment `[Github]()
 
-- `HTML5 API integration` 1 class in file [data.js](script/data.js)
+- `HTML5 API integration`
 
-- `A professional looking prototype with no significant usability flaws` 1 class in my assignment (all of the present .html files)
+- `A professional looking prototype with no significant usability flaws`
 
-- `Advanced responsive design` 2:1, 1 classes in all of the .html files present
+- `Advanced responsive design`
 
-- `HTML5 semantic elements` 2:1, 1 classes in file [About.html](About.html)
+- `HTML5 semantic elements`
 
-- `Manipulating the DOM` 2:1, 1 classes in file [data.js](script/data.js)
+- `Best practice of CSS`
 
-- `Best practice of CSS` 2:2, 2:1, 1 classes throughout my assignment (all of the present .html and .css files)
-- `Clear navigation` 2:2, 2:1, 1 classes in all of the present .html files
+- `Clear navigation`
 
-- `Clean and commented code` 3, 2:2, 2:1, 1 classes in all of the present .html, .css and .js files
+- `Clean and commented code`
 
-- `Contains all views (Home, Products, Cart and Item) with the brief met` in all of the present .html files
+- `Contains all views (Home, Products, Cart and Item) with the brief met`
 
 - `Written a README file in markdown following the design brief requirements` in file [README.md](README.md)
 
 - `Follow’s brief (design requirements 'shoulds'/'coulds')` throughout the project
-- `Wireframe` in file [wireframe.docx](wireframe.docx)
-- `HTML and CSS pass validation without errors` all files in the project
-- `iFrame embedded to display YouTube video` in file [About.html](About.html)
+

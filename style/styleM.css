@@ -7,6 +7,10 @@ body {
   font-family: sans-serif;
   background-color: #dfe9ef;
 }
+a {
+  text-decoration: none;
+  color: black;
+}
 
 /* NAVIGATION BAR SECTION */
 
